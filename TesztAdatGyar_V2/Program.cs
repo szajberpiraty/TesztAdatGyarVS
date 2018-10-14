@@ -9,7 +9,7 @@ namespace TesztAdatGyar_V2
 {
     class Program
     {
-        static Random vsz = new Random();
+        //static Random vsz = new Random();
         static void Main(string[] args)
         {
             Adattoltes adatok = new Adattoltes();
@@ -20,12 +20,12 @@ namespace TesztAdatGyar_V2
 
 
 
-            TesztAdat adat = new TesztAdat(adatok, 0);
-            Console.WriteLine("{0},{1},{2},{3}", adat.VezetekNev, adat.KeresztNev, adat.SzuletesEve, adat.SzuletesiHely);
-            adat = new TesztAdat(adatok, 1);
-            Console.WriteLine("{0},{1},{2},{3}", adat.VezetekNev, adat.KeresztNev, adat.SzuletesEve, adat.SzuletesiHely);
-            adat = new TesztAdat(adatok, 0);
-            Console.WriteLine("{0},{1},{2},{3}", adat.VezetekNev, adat.KeresztNev, adat.SzuletesEve, adat.SzuletesiHely);
+            //TesztAdat adat = new TesztAdat(adatok, 0);
+            //Console.WriteLine("{0},{1},{2},{3}", adat.VezetekNev, adat.KeresztNev, adat.SzuletesEve, adat.SzuletesiHely);
+            //adat = new TesztAdat(adatok, 1);
+            //Console.WriteLine("{0},{1},{2},{3}", adat.VezetekNev, adat.KeresztNev, adat.SzuletesEve, adat.SzuletesiHely);
+            //adat = new TesztAdat(adatok, 0);
+            //Console.WriteLine("{0},{1},{2},{3}", adat.VezetekNev, adat.KeresztNev, adat.SzuletesEve, adat.SzuletesiHely);
 
 
             TesztAdatok tesztadatok = new TesztAdatok(1000,@"d:\razgon\tesztadatoop.txt",adatok);
@@ -38,7 +38,7 @@ namespace TesztAdatGyar_V2
         {
             private Adattoltes adatok;
             List<TesztAdat> tesztadatok = new List<TesztAdat>();
-            //Random vsz = new Random();
+            public Random vsz = new Random();
             private int darabszam;
             private string file;
             private TesztAdat tesztadat;
@@ -58,7 +58,7 @@ namespace TesztAdatGyar_V2
                 
                 for (int i = 0; i <= darabszam; i++)
                 {
-                    tesztadat = new TesztAdat(adatok, vsz.Next(0, 2));
+                    tesztadat = new TesztAdat(adatok, vsz.Next(0, 2),vsz);
                     tesztadatok.Add(tesztadat);
                 }
 
@@ -142,7 +142,7 @@ namespace TesztAdatGyar_V2
 
 
 
-                public TesztAdat(Adattoltes adatok, int nem)
+                public TesztAdat(Adattoltes adatok, int nem,Random vsz)
                 {
                     this.VezetekNev = adatok.Vezeteknev(vsz.Next(0, adatok.VezetekNevek().Length));
                     if (nem == 0)
